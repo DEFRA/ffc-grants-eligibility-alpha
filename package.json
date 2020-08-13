@@ -1,0 +1,29 @@
+{
+  "name": "ffc-grants-eligibility",
+  "version": "1.0.0",
+  "description": "For prototyping and technical spikes.",
+  "main": "app/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:watch": "nodemon --inspect=0.0.0.0 --ext js --legacy-watch app/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DEFRA/ffc-grants-eligibility.git"
+  },
+  "author": "Defra",
+  "contributors": [
+    "Paul Andrews <paul.andrews@defra.gov.uk>"
+  ],
+  "license": "OGL-UK-3.0",
+  "bugs": {
+    "url": "https://github.com/DEFRA/ffc-grants-eligibility/issues"
+  },
+  "homepage": "https://github.com/DEFRA/ffc-grants-eligibility#readme",
+  "dependencies": {
+    "@hapi/hapi": "^20.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}

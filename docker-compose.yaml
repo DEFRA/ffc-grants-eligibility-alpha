@@ -1,0 +1,9 @@
+version: '3.8'
+
+services:
+  ffc-grants-eligibility:
+    build:
+      context: .
+      target: production
+    image: ffc-grants-eligibility
+    environment: {}
