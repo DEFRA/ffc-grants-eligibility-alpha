@@ -1,0 +1,4 @@
+{{- define "ffc-grants-eligibility.container" -}}
+ports:
+- containerPort: {{ .Values.container.port }}
+{{- end -}}

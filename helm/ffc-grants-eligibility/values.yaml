@@ -1,0 +1,30 @@
+environment: development
+name: ffc-grants-eligibility
+namespace: ffc-grants
+workstream: ffc-grants
+image: ffc-grants-eligibility
+
+labels: {}
+
+containerConfigMap:
+  name: ffc-grants-eligibility-config-map
+
+deployment:
+  restartPolicy: Always
+  priorityClassName: low
+  replicas: 1
+  minReadySeconds: 5
+  redeployOnChange: update this field to force a change
+  imagePullSecret:
+  runAsNonRoot: true
+  runAsUser: 1000
+
+container:
+  imagePullPolicy: IfNotPresent
+  requestMemory: 60Mi
+  requestCpu: 60m
+  limitMemory: 120Mi
+  limitCpu: 120m
+  readOnlyRootFilesystem: true
+  allowPrivilegeEscalation: false
+  port: 3000
