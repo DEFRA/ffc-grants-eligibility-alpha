@@ -15,7 +15,6 @@ deployment:
   replicas: 1
   minReadySeconds: 5
   redeployOnChange: update this field to force a change
-  imagePullSecret:
   runAsNonRoot: true
   runAsUser: 1000
 
@@ -28,3 +27,17 @@ container:
   readOnlyRootFilesystem: true
   allowPrivilegeEscalation: false
   port: 3000
+
+livenessProbe:
+  path: /healthz
+  port: 3000
+  initialDelaySeconds: 10
+  periodSeconds: 10
+  failureThreshold: 3
+
+readinessProbe:
+  path: /healthy
+  port: 3000
+  initialDelaySeconds: 10
+  periodSeconds: 10
+  failureThreshold: 3

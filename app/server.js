@@ -4,12 +4,12 @@ const server = Hapi.server({
   port: process.env.PORT
 })
 
-server.route({
-  method: 'GET',
-  path: '/',
-  handler: (request, h) => {
-    return 'Hello from Grants Eligibility Test'
-  }
-})
+const routes = [].concat(
+  require('./routes/home'),
+  require('./routes/healthy'),
+  require('./routes/healthz')
+)
+
+server.route(routes)
 
 module.exports = server

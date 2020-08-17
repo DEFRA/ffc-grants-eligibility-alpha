@@ -1,10 +1,10 @@
 {
   "name": "ffc-grants-eligibility",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "For prototyping and technical spikes.",
   "main": "app/index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --runInBand",
     "start:watch": "nodemon --inspect=0.0.0.0 --ext js --legacy-watch app/index.js"
   },
   "repository": {
