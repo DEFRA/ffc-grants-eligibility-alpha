@@ -22,10 +22,7 @@
   "homepage": "https://github.com/DEFRA/ffc-grants-eligibility#readme",
   "dependencies": {
     "@hapi/hapi": "^20.0.0",
-    "joi": "^17.2.1",
-    "pg": "^8.3.3",
-    "pg-hstore": "^2.3.3",
-    "sequelize": "^6.3.5"
+    "joi": "^17.2.1"
   },
   "devDependencies": {
     "jest": "^26.4.0",

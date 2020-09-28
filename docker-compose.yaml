@@ -6,19 +6,3 @@ services:
       context: .
       target: production
     image: ffc-grants-eligibility
-    depends_on:
-      - ffc-grants-eligibility-postgres
-    environment:
-      NODE_ENV: development
-
-  ffc-grants-eligibility-postgres:
-    image: postgres:11.4-alpine
-    environment:
-      POSTGRES_DB: ffc_grants_eligibility
-      POSTGRES_PASSWORD: ppp
-      POSTGRES_USERNAME: postgres
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-
-volumes:
-  postgres_data: {}
