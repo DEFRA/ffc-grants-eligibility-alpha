@@ -9,8 +9,12 @@ services:
       target: development
     image: ffc-grants-eligibility-development
     ports:
-      - "3000:3000"
+      - "3001:3000"
       - "9229:9229"
     volumes:
       - ./app/:/home/node/app/
       - ./package.json:/home/node/package.json
+
+  ffc-grants-eligibility-postgres:
+    ports:
+      - "5432:5432"

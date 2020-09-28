@@ -2,7 +2,7 @@ const server = require('./server')
 
 const init = async () => {
   await server.start()
-  console.log('Server running on %s', server.info.uri)
+  console.log(`# Hapi server started successfully on ${server.info.uri}`)
 }
 
 process.on('unhandledRejection', (err) => {
