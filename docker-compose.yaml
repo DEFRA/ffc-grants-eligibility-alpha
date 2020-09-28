@@ -6,3 +6,4 @@ services:
       context: .
       target: production
     image: ffc-grants-eligibility
+    environment: {}
