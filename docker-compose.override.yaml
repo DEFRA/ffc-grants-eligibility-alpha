@@ -14,3 +14,7 @@ services:
     volumes:
       - ./app/:/home/node/app/
       - ./package.json:/home/node/package.json
+
+  ffc-grants-eligibility-postgres:
+    ports:
+      - "5432:5432"
