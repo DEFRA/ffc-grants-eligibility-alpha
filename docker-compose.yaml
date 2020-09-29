@@ -15,7 +15,7 @@ services:
     environment:
       POSTGRES_DB: ffc_grants_eligibility
       POSTGRES_PASSWORD: ppp
-      POSTGRES_USERNAME: postgres
+      POSTGRES_USER: postgres
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
