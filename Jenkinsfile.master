@@ -1,0 +1,16 @@
+@Library('defra-library@v-8') _
+
+node {
+  try {
+    stage('Run liquibase migrations') {
+      echo 'THIS IS A TEST'
+    }
+
+    // stage('Deploy Helm chart') {
+    //   helm.deployRemoteChart(params.environment, params.namespace, params.chartName, params.chartVersion, params.helmChartRepoType)
+    // }
+  } catch(e) {
+    notifySlack.deploymentFailure(e.message)
+    throw e
+  }
+}
