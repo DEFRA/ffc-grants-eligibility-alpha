@@ -7,7 +7,8 @@ node {
     stage('Run liquibase migrations') {
       repoName = utils.getRepoName()
       envVars = Provision.getMigrationEnvVars(this, params.environment, repoName, '')
-      envVars['POSTGRES_SCHEMA_NAME'] = 'public'
+      envVars.removeAll { it.startsWith('POSTGRES_SCHEMA_NAME') }
+      envVars.add('POSTGRES_SCHEMA_NAME=public')
       envVars.each { echo "$it" }
       // ctx.sh("docker-compose -p $repoName -f docker-compose.migrate.yaml run --no-deps database-up")
     }
@@ -16,7 +17,7 @@ node {
     //   helm.deployRemoteChart(params.environment, params.namespace, params.chartName, params.chartVersion, params.helmChartRepoType)
     // }
   } catch(e) {
-    notifySlack.deploymentFailure(e.message)
+    // notifySlack.deploymentFailure(e.message)
     throw e
   }
 }
