@@ -1,5 +1,4 @@
 const Joi = require('joi')
-const { app } = require('../server')
 const Application = require('../models').Application
 
 module.exports = [
