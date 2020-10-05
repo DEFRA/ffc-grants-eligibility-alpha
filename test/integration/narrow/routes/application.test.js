@@ -5,14 +5,14 @@ describe('Home test', () => {
     await server.start()
   })
 
-  test('GET /application route returns 200', async () => {
+  test('GET /application route with no query string returns 400', async () => {
     const options = {
       method: 'GET',
       url: '/application'
     }
 
     const response = await server.inject(options)
-    expect(response.statusCode).toBe(200)
+    expect(response.statusCode).toBe(400)
   })
 
   afterEach(async () => {
