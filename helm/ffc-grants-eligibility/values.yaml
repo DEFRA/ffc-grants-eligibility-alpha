@@ -6,6 +6,10 @@ image: ffc-grants-eligibility
 
 labels: {}
 
+containerSecret:
+  name: ffc-grants-eligibility-container-secret
+  type: Opaque
+
 containerConfigMap:
   name: ffc-grants-eligibility-config-map
 
