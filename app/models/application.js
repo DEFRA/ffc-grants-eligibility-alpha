@@ -14,7 +14,9 @@ module.exports = (sequelize, DataTypes) => {
     }
   )
 
-  Application.createAssociations = function (models) { }
+  Application.createAssociations = models => {
+    console.log('No associations for the Applications model')
+  }
 
   return Application
 }

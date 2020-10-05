@@ -1,17 +1,9 @@
 const auth = require('@azure/ms-rest-nodeauth')
 
-function logRetry (message) {
-  console.log(message)
-}
-
-function isProd () {
-  return process.env.NODE_ENV === 'production'
-}
-
 const hooks = {
   beforeConnect: async cfg => {
     console.log('running beforeConnect hook')
-    if (isProd()) {
+    if (process.env.NODE_ENV === 'production') {
       console.log('attempting to acquire MSI credentials')
       const credentials = await auth.loginWithVmMSI({ resource: 'https://ossrdbms-aad.database.windows.net' })
       console.log('credentials acquired')
@@ -28,7 +20,7 @@ const retry = {
   match: [/SequelizeConnectionError/],
   max: 10,
   name: 'connection',
-  report: logRetry,
+  report: message => { console.log(message) },
   timeout: 60000
 }
 
