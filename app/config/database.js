@@ -9,7 +9,7 @@ function isProd () {
 }
 
 const hooks = {
-  beforeConnect: async (cfg) => {
+  beforeConnect: async cfg => {
     console.log('running beforeConnect hook')
     if (isProd()) {
       console.log('attempting to acquire MSI credentials')
@@ -33,13 +33,13 @@ const retry = {
 }
 
 module.exports = {
-  database: process.env.POSTGRES_DB,
-  dialect: 'postgres',
   hooks,
+  retry,
+  dialect: 'postgres',
+  database: process.env.POSTGRES_DB,
   host: process.env.POSTGRES_HOST,
   password: process.env.POSTGRES_PASSWORD,
   port: process.env.POSTGRES_PORT,
-  retry,
   schema: process.env.POSTGRES_SCHEMA_NAME,
   username: process.env.POSTGRES_USER
 }
