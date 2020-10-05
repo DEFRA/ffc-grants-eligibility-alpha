@@ -6,12 +6,16 @@ image: ffc-grants-eligibility
 
 labels: {}
 
-containerSecret:
-  name: ffc-grants-eligibility-container-secret
-  type: Opaque
+azureIdentity:
+  clientID: not-a-real-clientID
+  resourceID: not-a-real-resourceID
 
 containerConfigMap:
   name: ffc-grants-eligibility-config-map
+
+containerSecret:
+  name: ffc-grants-eligibility-container-secret
+  type: Opaque
 
 deployment:
   restartPolicy: Always
