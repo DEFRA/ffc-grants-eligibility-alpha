@@ -1,9 +1,14 @@
 @Library('defra-library@v-8') _
 
+import uk.gov.defra.ffc.Provision
+
 node {
   try {
     stage('Run liquibase migrations') {
-      echo 'THIS IS A TEST'
+      repoName = utils.getRepoName()
+      envVars = Provision.getMigrationEnvVars(this, params.environment, repoName, '')
+      envVars.each { echo "$it" }
+      // ctx.sh("docker-compose -p $repoName -f docker-compose.migrate.yaml run --no-deps database-up")
     }
 
     // stage('Deploy Helm chart') {
