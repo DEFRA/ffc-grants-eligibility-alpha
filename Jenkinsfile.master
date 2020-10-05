@@ -9,8 +9,10 @@ node {
       envVars = Provision.getMigrationEnvVars(this, params.environment, repoName, '')
       envVars.removeAll { it.startsWith('POSTGRES_SCHEMA_NAME') }
       envVars.add('POSTGRES_SCHEMA_NAME=public')
-      envVars.each { echo "$it" }
-      // ctx.sh("docker-compose -p $repoName -f docker-compose.migrate.yaml run --no-deps database-up")
+
+      withEnv(envVars) {
+        ctx.sh("docker-compose -p $repoName -f docker-compose.migrate.yaml run --no-deps database-up")
+      }
     }
 
     // stage('Deploy Helm chart') {
