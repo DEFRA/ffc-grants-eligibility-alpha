@@ -11,6 +11,7 @@ node {
       envVars.add('POSTGRES_SCHEMA_NAME=public')
 
       withEnv(envVars) {
+        sh("pwd && ls")
         sh("docker-compose -p $repoName -f docker-compose.migrate.yaml run --no-deps database-up")
       }
     }
