@@ -6,4 +6,24 @@ services:
       context: .
       target: production
     image: ffc-grants-eligibility
-    environment: {}
+    depends_on:
+      - ffc-grants-eligibility-postgres
+    environment:
+      POSTGRES_DB: ffc_grants_eligibility
+      POSTGRES_PASSWORD: ppp
+      POSTGRES_USER: postgres
+      POSTGRES_HOST: ffc-grants-eligibility-postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_SCHEMA_NAME: public
+
+  ffc-grants-eligibility-postgres:
+    image: postgres:11.4-alpine
+    environment:
+      POSTGRES_DB: ffc_grants_eligibility
+      POSTGRES_PASSWORD: ppp
+      POSTGRES_USER: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data: {}

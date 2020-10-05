@@ -6,8 +6,16 @@ image: ffc-grants-eligibility
 
 labels: {}
 
+azureIdentity:
+  clientID: not-a-real-clientID
+  resourceID: not-a-real-resourceID
+
 containerConfigMap:
   name: ffc-grants-eligibility-config-map
+
+containerSecret:
+  name: ffc-grants-eligibility-container-secret
+  type: Opaque
 
 deployment:
   restartPolicy: Always
@@ -27,6 +35,14 @@ container:
   readOnlyRootFilesystem: true
   allowPrivilegeEscalation: false
   port: 3000
+
+postgresService:
+  postgresDb: ffc_grants_eligibility
+  postgresExternalName:
+  postgresHost: ffc-grants-eligibility-postgres
+  postgresPort: 5432
+  postgresSchema: public
+  postgresUser: postgres
 
 livenessProbe:
   path: /healthz
