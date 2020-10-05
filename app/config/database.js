@@ -1,24 +1,24 @@
-// const auth = require('@azure/ms-rest-nodeauth')
+const auth = require('@azure/ms-rest-nodeauth')
 
 function logRetry (message) {
   console.log(message)
 }
 
-// function isProd () {
-//   return process.env.NODE_ENV === production
-// }
+function isProd () {
+  return process.env.NODE_ENV === 'production'
+}
 
 const hooks = {
   beforeConnect: async (cfg) => {
     console.log('running beforeConnect hook')
-    // if (isProd()) {
-    //   console.log('attempting to acquire MSI credentials')
-    //   const credentials = await auth.loginWithVmMSI({ resource: 'https://ossrdbms-aad.database.windows.net' })
-    //   console.log('credentials acquired')
-    //   const token = await credentials.getToken()
-    //   console.log('token acquired')
-    //   cfg.password = token.accessToken
-    // }
+    if (isProd()) {
+      console.log('attempting to acquire MSI credentials')
+      const credentials = await auth.loginWithVmMSI({ resource: 'https://ossrdbms-aad.database.windows.net' })
+      console.log('credentials acquired')
+      const token = await credentials.getToken()
+      console.log('token acquired')
+      cfg.password = token.accessToken
+    }
   }
 }
 
