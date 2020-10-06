@@ -9,12 +9,21 @@ node {
     stage('Run liquibase migrations') {
       repoName = utils.getRepoName()
       envVars = Provision.getMigrationEnvVars(this, params.environment, repoName, '')
-      envVars.removeAll { it.startsWith('POSTGRES_SCHEMA_NAME') }
-      envVars.add('POSTGRES_SCHEMA_NAME=public')
+      migrationFolder = 'migrations'
+      Provision.getMigrationFiles(this, migrationFolder)
+      // envVars.removeAll { it.startsWith('POSTGRES_SCHEMA_NAME') }
+      // envVars.add('POSTGRES_SCHEMA_NAME=public')
 
       withEnv(envVars) {
+        dir(migrationFolder) {
+          sh("docker-compose -p $repoName -f docker-compose.migrate.yaml run schema-up")
+        }
         sh("docker-compose -p $repoName -f docker-compose.migrate.yaml run --no-deps database-up")
       }
+
+      // withEnv(envVars) {
+      //   sh("docker-compose -p $repoName -f docker-compose.migrate.yaml run --no-deps database-up")
+      // }
     }
 
     // stage('Deploy Helm chart') {
