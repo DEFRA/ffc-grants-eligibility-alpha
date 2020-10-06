@@ -21,11 +21,11 @@ node {
       envVars.add("POSTGRES_SCHEMA_USERNAME=${adminUser.split('=')[1]}")
       envVars.add("POSTGRES_SCHEMA_PASSWORD=${adminPwd.split('=')[1]}")
 
-      envVars.each { echo "$it" }
+      // envVars.each { echo "$it" }
 
-      // withEnv(envVars) {
-      //   sh("docker-compose -p $repoName -f docker-compose.migrate.yaml run --no-deps database-up")
-      // }
+      withEnv(envVars) {
+        sh("docker-compose -p $repoName -f docker-compose.migrate.yaml run --no-deps database-up")
+      }
     }
 
     // stage('Deploy Helm chart') {
