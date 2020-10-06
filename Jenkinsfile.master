@@ -24,7 +24,7 @@ node {
       // envVars.each { echo "$it" }
 
       withEnv(envVars) {
-        sh("docker-compose -p $repoName -f docker-compose.migrate.yaml run --no-deps database-up")
+        sh("docker-compose -p $repoName -f docker-compose.migrate.yaml run --no-deps database-down")
       }
     }
 
