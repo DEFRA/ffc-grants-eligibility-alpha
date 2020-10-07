@@ -2,6 +2,7 @@ const auth = require('@azure/ms-rest-nodeauth')
 const MessageSender = require('./messaging/message-sender')
 const MessageReceiver = require('./messaging/message-receiver')
 const config = require('../config').messaging
+const Application = require('../models').Application
 
 process.on('SIGTERM', async () => {
   await messageService.closeConnections()
@@ -18,13 +19,15 @@ class MessageService {
     this.publishEligibility = this.publishEligibility.bind(this)
     this.closeConnections = this.closeConnections.bind(this)
     this.eligibilitySender = new MessageSender('eligibility-queue-sender', config.eligibilityQueue, credentials)
-    const testAction = message => {
-      console.log('Received message')
-      console.log(message)
+
+    const receiveEOIAction = async message => {
+      console.log('Received message, adding to DB')
+      await Application.create(JSON.parse(message))
       console.log('Sending message on')
       this.publishEligibility(message)
     }
-    this.eoiReceiver = new MessageReceiver('eoi-queue-receiver', config.eoiQueue, credentials, testAction)
+
+    this.eoiReceiver = new MessageReceiver('eoi-queue-receiver', config.eoiQueue, credentials, receiveEOIAction)
   }
 
   async closeConnections () {
