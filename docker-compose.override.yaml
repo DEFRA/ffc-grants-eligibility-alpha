@@ -10,7 +10,7 @@ services:
     image: ffc-grants-eligibility-development
     ports:
       - "3001:3000"
-      - "9229:9229"
+      - "9230:9229"
     volumes:
       - ./app/:/home/node/app/
       - ./package.json:/home/node/package.json

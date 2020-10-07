@@ -15,6 +15,11 @@ services:
       POSTGRES_HOST: ffc-grants-eligibility-postgres
       POSTGRES_PORT: 5432
       POSTGRES_SCHEMA_NAME: public
+      EOI_QUEUE_ADDRESS: ffc-grants-eoi-${MESSAGE_QUEUE_SUFFIX}
+      ELIGIBILITY_QUEUE_ADDRESS: ffc-grants-eligibility-${MESSAGE_QUEUE_SUFFIX}
+      MESSAGE_QUEUE_HOST: ${MESSAGE_QUEUE_HOST:-notset}
+      MESSAGE_QUEUE_PASSWORD: ${MESSAGE_QUEUE_PASSWORD:-notset}
+      MESSAGE_QUEUE_USER: ${MESSAGE_QUEUE_USER:-notset}
 
   ffc-grants-eligibility-postgres:
     image: postgres:11.4-alpine
