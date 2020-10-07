@@ -1,6 +1,6 @@
 {
   "name": "ffc-grants-eligibility",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "description": "For prototyping and technical spikes.",
   "main": "app/index.js",
   "scripts": {
@@ -22,6 +22,7 @@
   "homepage": "https://github.com/DEFRA/ffc-grants-eligibility#readme",
   "dependencies": {
     "@azure/ms-rest-nodeauth": "^3.0.6",
+    "@azure/service-bus": "^1.1.10",
     "@hapi/hapi": "^20.0.0",
     "joi": "^17.2.1",
     "pg": "^8.3.3",

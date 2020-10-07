@@ -35,6 +35,9 @@ container:
   readOnlyRootFilesystem: true
   allowPrivilegeEscalation: false
   port: 3000
+  messageQueueHost: dummy
+  eoiQueueAddress: eoi
+  eligibilityQueueAddress: eligibility
 
 postgresService:
   postgresDb: ffc_grants_eligibility
