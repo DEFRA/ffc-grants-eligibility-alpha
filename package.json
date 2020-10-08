@@ -1,6 +1,6 @@
 {
   "name": "ffc-grants-eligibility",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "description": "For prototyping and technical spikes.",
   "main": "app/index.js",
   "scripts": {
