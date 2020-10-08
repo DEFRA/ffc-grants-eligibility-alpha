@@ -22,9 +22,35 @@ class MessageService {
 
     const receiveEOIAction = async message => {
       console.log('Received message, adding to DB')
-      await Application.create(JSON.parse(message))
+
+      const messageObj = JSON.parse(message)
+
+      await Application.create({
+        confirmationId: messageObj.confirmationId,
+        inEngland: messageObj.inEngland,
+        businessName: messageObj.businessName,
+        emailAddress: messageObj.emailAddress
+      })
+
       console.log('Sending message on')
-      this.publishEligibility(message)
+
+      const emailMessage = {
+        messageType: 'email',
+        payload: {
+          emailAddress: messageObj.emailAddress,
+          magicLink: messageObj.magicLink
+        }
+      }
+
+      const eoiSubmittedMessage = {
+        messageType: 'eoiSubmitted',
+        payload: {
+          confirmationId: messageObj.confirmationId
+        }
+      }
+
+      this.publishEligibility(emailMessage)
+      this.publishEligibility(eoiSubmittedMessage)
     }
 
     this.eoiReceiver = new MessageReceiver('eoi-queue-receiver', config.eoiQueue, credentials, receiveEOIAction)
