@@ -49,8 +49,8 @@ class MessageService {
         }
       }
 
-      await this.publishEligibility(emailMessage)
-      await this.publishEligibility(eoiSubmittedMessage)
+      await this.publishEligibility(JSON.stringify(emailMessage))
+      await this.publishEligibility(JSON.stringify(eoiSubmittedMessage))
     }
 
     this.eoiReceiver = new MessageReceiver('eoi-queue-receiver', config.eoiQueue, credentials, receiveEOIAction)
