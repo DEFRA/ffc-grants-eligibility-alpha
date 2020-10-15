@@ -3,6 +3,7 @@ const MessageSender = require('./messaging/message-sender')
 const MessageReceiver = require('./messaging/message-receiver')
 const config = require('../config').messaging
 const Application = require('../models').Application
+const XLSX = require('xlsx')
 
 process.on('SIGTERM', async () => {
   await messageService.closeConnections()
@@ -13,6 +14,21 @@ process.on('SIGINT', async () => {
   await messageService.closeConnections()
   process.exit(0)
 })
+
+function createSpreadsheet (message) {
+  const wb = XLSX.utils.book_new()
+
+  wb.Props = {
+    Title: 'This is a test',
+    Author: 'FFC EOI'
+  }
+
+  wb.SheetNames.push('First Sheet')
+  const ws = XLSX.utils.json_to_sheet([message])
+  wb.Sheets['First Sheet'] = ws
+
+  XLSX.writeFile(wb, 'test123.xlsx')
+}
 
 class MessageService {
   constructor (credentials) {
@@ -31,6 +47,8 @@ class MessageService {
         businessName: messageObj.businessName,
         emailAddress: messageObj.emailAddress
       })
+
+      createSpreadsheet(messageObj)
 
       console.log('Sending message on')
 
