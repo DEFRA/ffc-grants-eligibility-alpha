@@ -1,0 +1,17 @@
+version: '3.8'
+
+# This override file should be used in development environments to
+# connect this service to sibling services from other repositories
+
+services:
+  ffc-grants-eligibility:
+    build:
+      context: .
+      target: development
+    networks:
+      - default
+      - ffc-grants
+
+networks:
+  ffc-grants:
+    external: true
