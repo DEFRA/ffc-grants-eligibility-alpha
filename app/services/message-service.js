@@ -24,6 +24,8 @@ class MessageService {
       console.log('Received message, adding to DB')
 
       const messageObj = JSON.parse(message)
+      messageObj.inProgress ? console.log('In Progress App') : console.log('Complete App')
+      messageObj.progressEmailAddress ? console.log('Send email') : console.log('Don\'t email')
 
       await Application.create({
         confirmationId: messageObj.confirmationId,
