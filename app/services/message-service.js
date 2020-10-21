@@ -16,9 +16,11 @@ process.on('SIGINT', async () => {
 
 class MessageService {
   constructor (credentials) {
-    this.publishEligibility = this.publishEligibility.bind(this)
+    this.publishApplication = this.publishApplication.bind(this)
+    this.publishContact = this.publishContact.bind(this)
     this.closeConnections = this.closeConnections.bind(this)
-    this.eligibilitySender = new MessageSender('eligibility-queue-sender', config.eligibilityQueue, credentials)
+    this.applicationSender = new MessageSender('application-topic-sender', config.applicationTopic, credentials)
+    this.contactSender = new MessageSender('contact-topic-sender', config.contactTopic, credentials)
 
     const receiveEOIAction = async message => {
       console.log('Received message, adding to DB')
@@ -51,8 +53,8 @@ class MessageService {
         }
       }
 
-      await this.publishEligibility(JSON.stringify(emailMessage))
-      await this.publishEligibility(JSON.stringify(eoiSubmittedMessage))
+      await this.publishContact(JSON.stringify(emailMessage))
+      await this.publishApplication(JSON.stringify(eoiSubmittedMessage))
     }
 
     this.eoiReceiver = new MessageReceiver('eoi-queue-receiver', config.eoiQueue, credentials, receiveEOIAction)
@@ -62,9 +64,18 @@ class MessageService {
     await this.eoiReceiver.closeConnection()
   }
 
-  async publishEligibility (message) {
+  async publishApplication (message) {
     try {
-      return await this.eligibilitySender.sendMessage(message)
+      return await this.applicationSender.sendMessage(message)
+    } catch (err) {
+      console.log(err)
+      throw err
+    }
+  }
+
+  async publishContact (message) {
+    try {
+      return await this.contactSender.sendMessage(message)
     } catch (err) {
       console.log(err)
       throw err

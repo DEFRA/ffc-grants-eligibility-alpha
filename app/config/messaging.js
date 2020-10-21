@@ -9,8 +9,12 @@ module.exports = {
     address: process.env.EOI_QUEUE_ADDRESS,
     ...connectionDetails
   },
-  eligibilityQueue: {
-    address: process.env.ELIGIBILITY_QUEUE_ADDRESS,
+  applicationTopic: {
+    address: process.env.APPLICATION_TOPIC_ADDRESS,
+    ...connectionDetails
+  },
+  contactTopic: {
+    address: process.env.CONTACT_TOPIC_ADDRESS,
     ...connectionDetails
   }
 }
