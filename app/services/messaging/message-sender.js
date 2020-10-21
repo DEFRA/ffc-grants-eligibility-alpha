@@ -1,8 +1,13 @@
 const MessageBase = require('./message-base')
 
 class MessageSender extends MessageBase {
+  constructor (name, config, credentials) {
+    super(name, config, credentials)
+    this.topicClient = this.sbClient.createTopicClient(config.address)
+  }
+
   async sendMessage (message) {
-    const sender = this.queueClient.createSender()
+    const sender = this.topicClient.createSender()
     try {
       console.log(`${this.name} sending message`, message)
 

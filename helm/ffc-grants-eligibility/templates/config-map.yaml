@@ -9,5 +9,6 @@ data:
   POSTGRES_SCHEMA_NAME: {{ quote .Values.postgresService.postgresSchema }}
   MESSAGE_QUEUE_HOST: {{ quote .Values.container.messageQueueHost }}
   EOI_QUEUE_ADDRESS: {{ quote .Values.container.eoiQueueAddress }}
-  ELIGIBILITY_QUEUE_ADDRESS: {{ quote .Values.container.eligibilityQueueAddress }}
+  APPLICATION_TOPIC_ADDRESS: {{ quote .Values.container.applicationTopicAddress }}
+  CONTACT_TOPIC_ADDRESS: {{ quote .Values.container.contactTopicAddress }}
 {{- end -}}

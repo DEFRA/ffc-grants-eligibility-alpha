@@ -1,4 +1,3 @@
 resources:
   queues:
     - name: eoi
-    - name: eligibility
