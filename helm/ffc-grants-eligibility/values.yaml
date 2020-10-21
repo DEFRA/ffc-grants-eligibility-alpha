@@ -37,7 +37,8 @@ container:
   port: 3000
   messageQueueHost: dummy
   eoiQueueAddress: eoi
-  eligibilityQueueAddress: eligibility
+  applicationTopicAddress: application
+  contactTopicAddress: contact
 
 postgresService:
   postgresDb: ffc_grants_eligibility
