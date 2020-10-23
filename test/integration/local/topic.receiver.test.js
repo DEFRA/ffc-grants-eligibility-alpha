@@ -4,7 +4,7 @@ const { ServiceBusClient } = require('@azure/service-bus')
 
 describe('subscription receiver', () => {
   const message = { body: 'hello' }
-  const testConfig = { ...config.messaging.applicationTopic, subscription: process.env.APPLICATION_TOPIC_SUBSCRIPTION }
+  const testConfig = { ...config.messaging.applicationTopic, subscription: process.env.APPLICATION_SUBSCRIPTION_ADDRESS }
   let sbClient
   let topicClient
   let subscriptionClient
