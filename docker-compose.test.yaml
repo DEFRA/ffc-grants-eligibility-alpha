@@ -9,5 +9,7 @@ services:
       target: development
     image: ffc-grants-eligibility-development
     command: npm run test
+    environment:
+      APPLICATION_TOPIC_SUBSCRIPTION: ${APPLICATION_TOPIC_SUBSCRIPTION:-notset}
     volumes:
       - ./test-output/:/home/node/test-output/
