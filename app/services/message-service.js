@@ -28,6 +28,8 @@ function createSpreadsheet (message) {
   wb.Sheets['First Sheet'] = ws
 
   XLSX.writeFile(wb, 'test123.xlsx')
+
+  console.log('MADE SPREADSHEET')
 }
 
 class MessageService {
