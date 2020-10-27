@@ -39,18 +39,12 @@ class MessageService {
       console.log('Sending message on')
 
       const emailMessage = {
-        messageType: 'email',
-        payload: {
-          emailAddress: messageObj.emailAddress,
-          magicLink: messageObj.magicLink
-        }
+        emailAddress: messageObj.emailAddress,
+        magicLink: messageObj.magicLink
       }
 
       const eoiSubmittedMessage = {
-        messageType: 'eoiSubmitted',
-        payload: {
-          confirmationId: messageObj.confirmationId
-        }
+        ...messageObj
       }
 
       await this.publishContact(JSON.stringify(emailMessage))
