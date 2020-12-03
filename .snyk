@@ -6,4 +6,7 @@ ignore:
     - '*':
         reason: No known vuln
         expires: 2020-11-05T00:00:00.000Z
+      sequelize > lodash:
+        reason: No known vuln
+        expires: '2021-01-02T11:19:38.581Z'
 patch: {}
